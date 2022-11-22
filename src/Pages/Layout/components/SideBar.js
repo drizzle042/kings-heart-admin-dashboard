@@ -16,11 +16,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import CampaignIcon from '@mui/icons-material/Campaign';
-import MessageIcon from '@mui/icons-material/Message';
-import GridViewIcon from '@mui/icons-material/GridView';
+// import BorderColorIcon from '@mui/icons-material/BorderColor';
+// import AssignmentIcon from '@mui/icons-material/Assignment';
+// import CampaignIcon from '@mui/icons-material/Campaign';
+// import MessageIcon from '@mui/icons-material/Message';
+// import GridViewIcon from '@mui/icons-material/GridView';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import Header from "./Header";
 
@@ -119,7 +119,7 @@ const SideBar = ({ children }) => {
             </div>
             <div className={styles.sideBarDiv}>
               <List>
-                <ListItem disablePadding>
+                {/* <ListItem disablePadding>
                     <ListItemButton>
                       <Link to="/">
                         <ListItemIcon>
@@ -128,7 +128,7 @@ const SideBar = ({ children }) => {
                         <ListItemText primary={"Overview"} />
                       </Link>
                     </ListItemButton>
-                </ListItem>
+                </ListItem> */}
                 <ListItem disablePadding>
                     <ListItemButton>
                       <Link to="/scoresheets">
@@ -139,7 +139,7 @@ const SideBar = ({ children }) => {
                       </Link>
                     </ListItemButton>
                 </ListItem>
-                <ListItem disablePadding>
+                {/* <ListItem disablePadding>
                     <ListItemButton>
                       <Link to="/exams">
                         <ListItemIcon>
@@ -148,31 +148,31 @@ const SideBar = ({ children }) => {
                         <ListItemText primary={"Exams"} />
                       </Link>
                     </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
+                </ListItem> */}
+                {/* <ListItem disablePadding>
                     <ListItemButton>
                       <ListItemIcon>
                         <AssignmentIcon fontSize={"large"} />
                       </ListItemIcon>
                       <ListItemText primary={"Assignments"} />
                     </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
+                </ListItem> */}
+                {/* <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon>
                       <CampaignIcon fontSize={"large"} />
                     </ListItemIcon>
                     <ListItemText primary={"Anouncements"} />
                   </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
+                </ListItem> */}
+                {/* <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon>
                       <MessageIcon fontSize={"large"} />
                     </ListItemIcon>
                     <ListItemText primary={"Messages"} />
                   </ListItemButton>
-                </ListItem>
+                </ListItem> */}
               </List>
               <List>
                 <ListItem disablePadding>
