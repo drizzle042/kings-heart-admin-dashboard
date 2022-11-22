@@ -1,0 +1,61 @@
+/* Header */
+.text {
+    margin: 0;
+    font-weight: 900;
+}
+.flex {
+  display: flex;
+  justify-content: center;
+}
+.flexHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 0rem 2rem;
+}
+@media only screen and (max-width: 500px) {
+  .flexHeader {
+    padding: 0rem 1rem;
+  }
+}
+.clickableDiv {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+/* Side Bar */
+.logoContainer {
+  min-width: 190px; 
+  max-width: 200px;
+  display: flex;
+  justify-content: center;
+}
+.logo {
+  width: 100px;
+  height: 55px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.sideBarPaper {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  height: 100vh;
+}
+.sideBarDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1 1 auto;
+}
+.dragger {
+  width: 5px;
+  cursor: ew-resize;
+  padding: 4px 0 0;
+  border-top: 1px solid #ddd;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background-color: #f4f7f9;
+}
