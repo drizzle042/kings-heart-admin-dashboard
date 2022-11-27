@@ -92,30 +92,6 @@
   max-width: 350px;
   margin: 0 auto;
 }
-.socials {
-  margin-top: 42px;
-}
-.socialLogin {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 22px;
-}
-.socialLogin div {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  column-gap: 18px;
-  border: 1px solid #d2dae6;
-  border-radius: 5px;
-  padding: 10px;
-  font-size: 14px;
-  cursor: pointer;
-}
-.socialLogin div img {
-  width: auto;
-}
 
 @media (max-width: 600px) {
   .content {

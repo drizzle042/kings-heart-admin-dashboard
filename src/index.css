@@ -7,6 +7,8 @@
     --lightgray: #ECE7E7;
     --white: #fff;
     --black: rgb(32, 30, 30);
+    --background-blue: #58a4c1;
+    --white-transparent: rgba(255, 255, 255, 0.6);
 }
 *::-webkit-scrollbar {
     width: 3px;
@@ -20,5 +22,8 @@ body {
 a {
     text-decoration: none;
     display: inline-flex;
+    width: 100%;
+    justify-content: center;
+    padding-left: 10px;
     color: var(--black);
 }

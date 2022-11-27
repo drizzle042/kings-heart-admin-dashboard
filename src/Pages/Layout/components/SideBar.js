@@ -14,13 +14,15 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import SettingsIcon from '@mui/icons-material/Settings';
-import LogoutIcon from '@mui/icons-material/Logout';
+import Groups2Icon from '@mui/icons-material/Groups2';
+import SchoolIcon from '@mui/icons-material/School';
 // import BorderColorIcon from '@mui/icons-material/BorderColor';
 // import AssignmentIcon from '@mui/icons-material/Assignment';
 // import CampaignIcon from '@mui/icons-material/Campaign';
 // import MessageIcon from '@mui/icons-material/Message';
 // import GridViewIcon from '@mui/icons-material/GridView';
+// import SettingsIcon from '@mui/icons-material/Settings';
+import LogoutIcon from '@mui/icons-material/Logout';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import Header from "./Header";
 
@@ -131,6 +133,26 @@ const SideBar = ({ children }) => {
                 </ListItem> */}
                 <ListItem disablePadding>
                     <ListItemButton>
+                      <Link to="/students">
+                        <ListItemIcon>
+                          <SchoolIcon fontSize={"large"} />
+                        </ListItemIcon>
+                        <ListItemText primary={"Students"} />
+                      </Link>
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                    <ListItemButton>
+                      <Link to="/employees">
+                        <ListItemIcon>
+                          <Groups2Icon fontSize={"large"} />
+                        </ListItemIcon>
+                        <ListItemText primary={"Employees"} />
+                      </Link>
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                    <ListItemButton>
                       <Link to="/scoresheets">
                         <ListItemIcon>
                           <ReceiptLongIcon fontSize={"large"} />
@@ -175,26 +197,28 @@ const SideBar = ({ children }) => {
                 </ListItem> */}
               </List>
               <List>
-                <ListItem disablePadding>
+                {/* <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon>
                       <SettingsIcon fontSize={"large"} />
                     </ListItemIcon>
                     <ListItemText primary={"Settings"} />
                   </ListItemButton>
-                </ListItem>
+                </ListItem> */}
                 <ListItem disablePadding>
                   <ListItemButton>
-                    <ListItemIcon>
-                      <LogoutIcon fontSize={"large"} />
-                    </ListItemIcon>
-                    <ListItemText sx={{color: "var(--red)"}} primary={"Log out"} />
+                    <Link to={"/signin"}>
+                      <ListItemIcon>
+                        <LogoutIcon fontSize={"large"} />
+                      </ListItemIcon>
+                      <ListItemText sx={{color: "var(--red)"}} primary={"Log out"} />
+                    </Link>
                   </ListItemButton>
                 </ListItem>
               </List>
             </div>
           </div>
-          <div className={styles.dragger} onMouseDown={e => handleMouseDown(e)} />
+          <div className={styles.dragger} onMouseDown={e => handleMouseDown(e)}></div>
         </div>
         </Drawer>
         <Main open={open}>

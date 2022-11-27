@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import {Link} from "react-router-dom"
 import kingsHeartLogo from "../../../Lib/assets/king_s_heart_crown.png";
 import Feedback from "../../../Lib/Feedback/Feedback";
@@ -35,7 +35,7 @@ const SignIn = () => {
     if (message?.authToken){
       setOpenSnackBar(false);
       localStorage.setItem("user-tokens", String(message?.authToken))
-      navigate("/scoresheets")
+      navigate("/employees")
     } else if (message?.message) {
         setOpenSnackBar(true);
         setFeedBackMessage(message?.message)
@@ -93,8 +93,8 @@ const SignIn = () => {
                 />
               </div>
               <div>
-              <Link to="/request-password-reset">
-                <p style={{color:"blue", textAlign: "right"}}>Forgot Password?</p>
+              <Link to="/request-password-reset" style={{display: "block"}}>
+                <p style={{color: "blue", textAlign: "right"}}>Forgot Password?</p>
               </Link>
               </div>
               <div className={styles.buttonWrapper}>
