@@ -20,23 +20,16 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import usePost from "../../Lib/Hooks/Requests/usePost";
+import useFetch from "../../Lib/Hooks/Requests/useFetch";
 import { Admin } from "../../Lib/Endpoints/Endpoints";
 import Feedback from "../../Lib/Feedback/Feedback";
 import Loader from "../../Lib/Loader/Loader";
 
 const Students = () => {
 
-    const names = [
-        "2016 Class",
-        "2017 Class",
-        "2018 Class",
-        "2019 Class",
-        "2020 Class",
-        "2021 Class",
-        "2022 Class",
-    ];
+    const {data: classes, isLoading: loadingClasses, error} = useFetch(`${Admin.getExistingClasses}?className=ALL`)
 
-    const {postFunc, postForm, isLoading, message, messageSeverity} = usePost(Admin.createStudent)
+    const {postFunc, postForm, isLoading: posting, message, messageSeverity} = usePost(Admin.createStudent)
     
 
     const [feedBackMessage, setFeedBackMessage] = useState("")
@@ -197,9 +190,13 @@ const Students = () => {
                                 currentClass: e.target.value
                             })
                         }}>
-                            {names.map((i) => (
-                                <MenuItem key={i} value={i}>{i}</MenuItem>
-                            ))}
+                            {
+                                classes ? 
+                                classes.data.map((i) => (
+                                    <MenuItem key={i.class_name} value={i.class_name}>{i.class_name}</MenuItem>
+                                    )) : 
+                                <MenuItem>{error?.message}</MenuItem>
+                            }
                         </TextField>
                     </div>
                     <div className={styles.textFieldContainer}>
@@ -299,7 +296,7 @@ const Students = () => {
 
     return ( 
         <Layout>
-            { isLoading && <Loader />}
+            { (posting || loadingClasses) && <Loader />}
             <Typography 
             align="center" 
             variant="h3" 

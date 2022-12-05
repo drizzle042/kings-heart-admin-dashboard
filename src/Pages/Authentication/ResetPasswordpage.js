@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import JurebLogo from "../../../../lib/assets/images/jureb-logo.png";
-import { Button } from "@mui/material";
-import { InputField } from "../Input";
+import kingsHeartLogo from "../../Lib/assets/king_s_heart_crown.png";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 import styles from "./styles/styles.module.css";
-import CustomHook from "./useCustomHook/CustomHook";
-import Feedback from "../../../../lib/components/Feedback/Feedback"
+import { Authentication } from "../../Lib/Endpoints/Endpoints";
+import Feedback from "../../Lib/Feedback/Feedback";
 
-function Resetpage() {
-  const { errors, register } = CustomHook();
+
+const ResetPasswordpage = () => {
 
   const [password, setPassword] = useState({});
   const [error, setError] = useState(null);
@@ -25,11 +25,11 @@ function Resetpage() {
   function changePassword(passwordProvided){
     if (queryParams.has("token")){
       const token = queryParams.get("token")
+      console.log(token)
       let payload = {
-        token: token,
         password: passwordProvided
       }
-      fetch(`${process.env.REACT_APP_BACKEND_API_URL}/api/v1/admin/auth/password-reset/`, {
+      fetch(Authentication.resetPassword, {
         method: "PUT",
         headers: {
           "Authorization": "Bearer " + token,
@@ -43,11 +43,11 @@ function Resetpage() {
             promise
                 .then((resObj) => {
                   setSeverity("success")
-                  setError(resObj?.data);
+                  setError(resObj?.message);
                   setOpenSnackBar(true)
                   window.setTimeout(() => {
                     navigate("/signin")
-                  }, 3)
+                  }, 3000)
                 })
         } else {
             let promise = response.json()
@@ -67,21 +67,18 @@ function Resetpage() {
       <main className={styles.main}>
         <div className={styles.content}>
           <div className={styles.logoWrapper}>
-            <img className={styles.logo} src={JurebLogo} alt="Jureb" />
-          </div><br></br>
+            <img className={styles.logo} src={kingsHeartLogo} alt="King's Heart" />
+          </div>
           <h2>Reset Password</h2> <br></br>
           <section className={styles.contentSection}>
               <div className={styles.inputWrapper}>
-                <InputField
+                <TextField
                   size="medium"
                   placeholder="************"
                   type="password"
                   label="Password"
                   fullWidth={true}
                   name={"password"}
-                  register={register}
-                  error={errors.password ? true : false}
-                  helperText={errors?.password?.message}
                   onInput = {(e) => {
                     setPassword({
                       ...password,
@@ -91,16 +88,13 @@ function Resetpage() {
                 />
               </div>
               <div className={styles.inputWrapper}>
-                <InputField
+                <TextField
                   size="medium"
                   placeholder="************"
                   type="password"
                   label="Confirm Password"
                   fullWidth={true}
                   name={"confirmPassword"}
-                  register={register}
-                  error={errors.password ? true : false}
-                  helperText={errors?.password?.message}
                   onInput = {(e) => {
                     setPassword({
                       ...password,
@@ -112,7 +106,6 @@ function Resetpage() {
               <div className={styles.buttonWrapper}>
                 <Button
                   size="medium"
-                  color="secondary"
                   variant="contained"
                   fullWidth
                   type="submit"
@@ -143,5 +136,5 @@ function Resetpage() {
   );
 }
 
-export default Resetpage
+export default ResetPasswordpage;
 

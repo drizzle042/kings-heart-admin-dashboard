@@ -1,6 +1,5 @@
 import Button from "@mui/material/Button";
-import internetError from "../../assets/images/internetConnection.png"
-import "../LoaderComponent/loading.css"
+import internetError from "../assets/internetConnection.png"
 
 const FetchError = ({error, reFetch}) => {
     return ( 

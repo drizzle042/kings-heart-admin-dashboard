@@ -22,7 +22,9 @@ const Authentication = {
 
 const Admin = {
     createStudent: `${baseUrl}/admin/api/v0/administrators/create-student/`,
-    createEmployee: `${baseUrl}/admin/api/v0/administrators/create-employee/`
+    createEmployee: `${baseUrl}/admin/api/v0/administrators/create-employee/`,
+    getExistingClasses: `${baseUrl}/admin/api/v0/administrators/existing-classes/`,
+    getExistingSubjects: `${baseUrl}/admin/api/v0/administrators/existing-subjects/`
 }
 
 export { 

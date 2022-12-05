@@ -18,23 +18,18 @@ import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
 import Layout from "../Layout/Layout";
 import usePost from "../../Lib/Hooks/Requests/usePost";
+import useFetch from "../../Lib/Hooks/Requests/useFetch";
 import { Admin } from "../../Lib/Endpoints/Endpoints";
 import Feedback from "../../Lib/Feedback/Feedback";
 import Loader from "../../Lib/Loader/Loader";
 
 const Employees = () => {
-    
-    const names = [
-        "2016 Class",
-        "2017 Class",
-        "2018 Class",
-        "2019 Class",
-        "2020 Class",
-        "2021 Class",
-        "2022 Class",
-    ];
 
-    const {postFunc, isLoading, message, messageSeverity} = usePost(Admin.createEmployee)
+    const {data: classes, isLoading: loadingClasses, error: FetchClassListError} = useFetch(`${Admin.getExistingClasses}?className=ALL`)
+    
+    const {data: subjects, isLoading: loadingSubjects, error: FetchSubjectListError} = useFetch(`${Admin.getExistingSubjects}?subjectName=ALL`)
+
+    const {postFunc, isLoading: posting, message, messageSeverity} = usePost(Admin.createEmployee)
     
 
     const [feedBackMessage, setFeedBackMessage] = useState("")
@@ -52,9 +47,10 @@ const Employees = () => {
 
     const SingleForm = () => {
 
-        let maxDOB = new Date() - 157680000000;
+        let maxDOB = new Date() - 567648000000;
         const [formData, setFormData] = useState({
             dateOfBirth: new Date(maxDOB).toISOString(),
+            subjects: [],
             teachingClass: []
         })
         
@@ -173,6 +169,33 @@ const Employees = () => {
                     <div className={styles.textFieldContainer}>
                         <Select
                         multiple
+                        label={"Subject(s)"}
+                        fullWidth
+                        value={formData.subjects}
+                        onChange={(e) => {
+                            setFormData({
+                                ...formData,
+                                subjects: typeof e.target.value === 'string' ? e.target.value.split(',') : e.target.value,
+                            })
+            
+                        }}
+                        required
+                        renderValue={renderMultipleSelectValue}>
+                            {
+                                subjects ? 
+                                subjects.data.map((i) => (
+                                    <MenuItem key={i.subject_name} value={i.subject_name}>
+                                        <Checkbox checked={formData.subjects.indexOf(i.subject_name) > -1} />
+                                        <ListItemText primary={i.subject_name} />
+                                    </MenuItem>
+                                    )) : 
+                                <MenuItem>{FetchSubjectListError?.message}</MenuItem>
+                            }
+                        </Select>
+                    </div>
+                    <div className={styles.textFieldContainer}>
+                        <Select
+                        multiple
                         label={"Class(es)"}
                         fullWidth
                         value={formData.teachingClass}
@@ -185,12 +208,16 @@ const Employees = () => {
                         }}
                         required
                         renderValue={renderMultipleSelectValue}>
-                            {names.map((i) => (
-                                <MenuItem key={i} value={i}>
-                                    <Checkbox checked={formData.teachingClass.indexOf(i) > -1} />
-                                    <ListItemText primary={i} />
-                                </MenuItem>
-                            ))}
+                            {
+                                classes ? 
+                                classes.data.map((i) => (
+                                    <MenuItem key={i.class_name} value={i.class_name}>
+                                        <Checkbox checked={formData.teachingClass.indexOf(i.class_name) > -1} />
+                                        <ListItemText primary={i.class_name} />
+                                    </MenuItem>
+                                    )) : 
+                                <MenuItem>{FetchClassListError?.message}</MenuItem>
+                            }
                         </Select>
                     </div>
                     <div className={styles.textFieldContainer}>
@@ -218,7 +245,7 @@ const Employees = () => {
 
     return ( 
         <Layout>
-            { isLoading && <Loader />}
+            { (posting || loadingClasses || loadingSubjects) && <Loader />}
             <Typography 
             align="center" 
             variant="h3" 
