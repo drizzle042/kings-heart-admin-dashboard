@@ -6,9 +6,9 @@
     --gray: #D8D4D4;
     --lightgray: #ECE7E7;
     --white: #fff;
+    --white-transparent: rgba(255, 255, 255, 0.5);
     --black: rgb(32, 30, 30);
     --background-blue: #58a4c1;
-    --white-transparent: rgba(255, 255, 255, 0.6);
 }
 *::-webkit-scrollbar {
     width: 3px;

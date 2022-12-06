@@ -20,6 +20,10 @@ const Authentication = {
     generateAuthTokens: `${baseUrl}/admin/api/v0/administrators/signin/`
 }
 
+const Account = {
+    getAccount: `${baseUrl}/admin/api/v0/administrators/account/`
+}
+
 const Admin = {
     createStudent: `${baseUrl}/admin/api/v0/administrators/create-student/`,
     createEmployee: `${baseUrl}/admin/api/v0/administrators/create-employee/`,
@@ -29,5 +33,6 @@ const Admin = {
 
 export { 
     Authentication,
+    Account,
     Admin
 }

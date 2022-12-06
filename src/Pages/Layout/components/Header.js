@@ -1,6 +1,4 @@
 import styles from "../styles/styles.module.css";
-import { profile } from '../../../Lib/static/data';
-import ProfileImage from "../../../Lib/assets/172139357_1823740611148344_7079540914338843565_n.jpg";
 import MuiAppBar from '@mui/material/AppBar';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -9,6 +7,9 @@ import Typography from '@mui/material/Typography';
 import Avatar from "@mui/material/Avatar";
 import MenuIcon from '@mui/icons-material/Menu';
 import ExpandMoreSharpIcon from '@mui/icons-material/ExpandMoreSharp';
+import useFetch from "../../../Lib/Hooks/Requests/useFetch";
+import Loader from "../../../Lib/Loader/Loader";
+import { Account } from "../../../Lib/Endpoints/Endpoints";
 
 const Header = ({ setOpen, open, drawerWidth }) => {
     
@@ -28,9 +29,13 @@ const Header = ({ setOpen, open, drawerWidth }) => {
         }),
         }),
     }));
+
+    const { data, isLoading } = useFetch(Account.getAccount);
+    console.log(data);
     
     return (
       <Box>
+        { isLoading && <Loader /> }
         <AppBar 
         position="fixed" 
         open={open} 
@@ -61,7 +66,7 @@ const Header = ({ setOpen, open, drawerWidth }) => {
                 color="inherit"
               >
                 <Avatar 
-                src={ProfileImage} 
+                src={data?.data?.image} 
                 sx={{ width: 50, height: 50 }} />
               </IconButton>
               <Typography 
@@ -71,7 +76,7 @@ const Header = ({ setOpen, open, drawerWidth }) => {
                 marginTop: "auto", 
                 marginBottom: "auto",
                 display: { xs: "none", md: "flex" }
-              }}>{profile.name}</Typography>
+              }}>{data?.data?.first_name} {data?.data?.last_name}</Typography>
               <ExpandMoreSharpIcon
               fontSize={"large"} />
             </div>
