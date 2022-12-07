@@ -31,7 +31,6 @@ const Header = ({ setOpen, open, drawerWidth }) => {
     }));
 
     const { data, isLoading } = useFetch(Account.getAccount);
-    console.log(data);
     
     return (
       <Box>
