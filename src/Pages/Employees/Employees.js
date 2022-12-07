@@ -124,7 +124,6 @@ const Employees = () => {
                                 label="Date of birth"
                                 value={formData.dateOfBirth}
                                 onChange={(e) => {
-                                    console.log(e)
                                     setFormData({
                                         ...formData,
                                         dateOfBirth: new Date(e).toISOString()
