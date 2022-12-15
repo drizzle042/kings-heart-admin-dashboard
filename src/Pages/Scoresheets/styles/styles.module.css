@@ -1,0 +1,41 @@
+.searchCard {
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 6rem;
+}
+.searchBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.searchBarSelect {
+    width: 30%;
+}
+.searchBarTextField {
+    width: 65%;
+    background-color: var(--gray);
+    color: var(--white);
+}
+.errorText {
+    color: var(--red);
+    padding: 0.5rem;
+}
+
+@media only screen and (max-width: 500px){
+    .searchBar {
+        display: flex;
+        flex-direction: column;
+    }
+    .searchBarSelect, .searchBarTextField {
+        width: 90%;
+        max-width: 350px;
+    }
+}

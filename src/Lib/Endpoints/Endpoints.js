@@ -31,8 +31,24 @@ const Admin = {
     getExistingSubjects: `${baseUrl}/admin/api/v0/administrators/existing-subjects/`
 }
 
+const Scoresheet = {
+    getScoresheet: `${baseUrl}/admin/api/v0/administrators/scoresheets/`,
+    updateScoresheet: `${baseUrl}/admin/api/v0/administrators/scoresheets/`
+}
+
+const Misc = {
+    getCurrentTerm: `${baseUrl}/admin/api/v0/administrators/current-term-meta/`
+}
+
+const Helpers = {
+    checkConnection: `${baseUrl}/utilities/api/v0/check-online/`
+}
+
 export { 
     Authentication,
     Account,
-    Admin
+    Admin,
+    Scoresheet,
+    Misc,
+    Helpers
 }

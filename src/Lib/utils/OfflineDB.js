@@ -1,4 +1,6 @@
-// Client side database creation
+// Client side database interaction
+import { useState } from "react"
+
 
 const createDB = (
     database,
@@ -49,7 +51,7 @@ const populateDBCollection = (
         const collection = transaction.objectStore(objectStore)
 
         data.map((i) => (
-            collection.add(i)
+            collection.put(i)
         ))        
 
         transaction.oncomplete = () => {
@@ -85,5 +87,42 @@ const updateDBCollection = (
         }
     }
 }
+
+const useDB = (
+    database,
+    version = 1,
+    objectStore
+) => {
+
+    const [data, setData] = useState(null)
+
+    function fetchOfflineData(){
+        // Client side database management for scoresheet offline
+        const DB = indexedDB
+        const request = DB.open(database, version)
+
+        request.onerror = (e) => {
+            alert(e)
+            console.log(e);
+        }
+
+        request.onsuccess = () => {
+            const db = request.result
+            const transaction = db.transaction(objectStore, "readonly")
+            const collection = transaction.objectStore(objectStore)
+
+            let response = collection.getAll()
+            response.onsuccess = () => {
+                setData(response.result)
+            }
+
+            transaction.oncomplete = () => {
+                db.close()
+            }
+        }
+    }
+
+    return ({data, fetchOfflineData})
+}
  
-export { createDB, populateDBCollection, updateDBCollection };
+export { createDB, populateDBCollection, updateDBCollection, useDB };
